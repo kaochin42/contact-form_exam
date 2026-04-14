@@ -1,117 +1,148 @@
 @extends('layouts.app')
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/form.css') }}">
+@endpush
 @section('content')
-<h2>Contact</h2>
-<form action="/confirm" method="post">
-    @csrf
-    <table>
-        <!-- 名前 -->
-        <tr>
-            <th>お名前<span>※</span></th>
-            <td>
-                <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="例: 山田">
-                <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="例: 太郎">
-                @error('last_name')
-                <div>{{ $message }}</div>
-                @enderror
-                @error('first_name')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+<div class="container">
+    <h2 class="page-title">Contact</h2>
+    <div class="form-wrap">
+        <form action="/confirm" method="post">
+            @csrf
+            <table class="form-table">
 
-        <!-- 性別 -->
-        <tr>
-            <th>性別<span>※</span></th>
-            <td>
-                <input type="radio" name="gender" value="1" id="male" {{ old('gender', '1') == '1' ? 'checked' : '' }}><label for="male">男性</label>
-                <input type="radio" name="gender" value="2" id="female" {{ old('gender') == '2' ? 'checked' : '' }}><label for="female">男性</label>
-                <input type="radio" name="gender" value="3" id="other" {{ old('gender') == '3' ? 'checked' : '' }}><label for="other">その他</label>
-                @error('gender')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+                <!-- 名前 -->
+                <tr>
+                    <th class="form-label">お名前<span>※</span></th>
+                    <td class="form-field">
+                        <div class="name-group">
+                            <div class="name-item">
+                                <input class="form-input" type="text" name="last_name" value="{{ old('last_name') }}" placeholder="例: 山田">
+                                @error('last_name')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="name-item">
+                                <input class="form-input" type="text" name="first_name" value="{{ old('first_name') }}" placeholder="例: 太郎">
+                                @error('first_name')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </td>
+                </tr>
 
-        <!-- メールアドレス -->
-        <tr>
-            <th>メールアドレス<span>※</span></th>
-            <td>
-                <input type="email" value="{{ old('email') }}" placeholder="例: test@example.com">
-                @error('email')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+                <!-- 性別 -->
+                <tr>
+                    <th class="form-label">性別<span>※</span></th>
+                    <td class="form-field">
+                        <div class="radio-group">
+                            <label class="radio-label" for="male">
+                                <input type="radio" name="gender" value="1" id="male" {{ old('gender') == '1' ? 'checked' : '' }}>男性
+                            </label>
+                            <label class="radio-label" for="female">
+                                <input type="radio" name="gender" value="2" id="female" {{ old('gender') == '2' ? 'checked' : '' }}>女性
+                            </label>
+                            <label class="radio-label" for="other">
+                                <input type="radio" name="gender" value="3" id="other" {{ old('gender') == '3' ? 'checked' : '' }}>その他
+                            </label>
+                        </div>
+                        @error('gender')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </td>
+                </tr>
 
-        <!-- 電話番号 -->
-        <tr>
-            <th>電話番号<span>※</span></th>
-            <td>
-                <input type="text" name="tel1" value="{{ old('tel1') }}" size="3"> -
-                <input type="text" name="tel2" value="{{ old('tel2') }}" size="4"> -
-                <input type="text" name="tel3" value="{{ old('tel3') }}" size="4">
-            <!-- 一旦それぞれの下に出るスタイル -->
-                @error('tel1')
-                <div>{{ $message }}</div>
-                @enderror
-                @error('tel2')
-                <div>{{ $message }}</div>
-                @enderror
-                @error('tel3')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+                <!-- メールアドレス -->
+                <tr>
+                    <th class="form-label">メールアドレス<span>※</span></th>
+                    <td class="form-field">
+                        <input class="form-input" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
+                        @error('email')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </td>
+                </tr>
 
-        <!-- 住所 -->
-        <tr>
-            <th>住所<span>※</span></th>
-            <td>
-                <input type="text" name="address" value="{{ old('address') }}" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3">
-                @error('address')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+                <!-- 電話番号 -->
+                <tr>
+                    <th class="form-label">電話番号<span>※</span></th>
+                    <td class="form-field">
+                        <div class="tel-group">
+                            <div class="tel-item">
+                                <input class="form-tel" type="text" name="tel1" value="{{ old('tel1') }}" placeholder="080">
+                                @error('tel1')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            -
+                            <div class="tel-item">
+                                <input class="form-tel" type="text" name="tel2" value="{{ old('tel2') }}" placeholder="1234">
+                                @error('tel2')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            -
+                            <div class="tel-item">
+                                <input class="form-tel" type="text" name="tel3" value="{{ old('tel3') }}" placeholder="5678">
+                                @error('tel3')
+                                <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </td>
+                </tr>
 
-        <!-- 建物名 -->
-        <tr>
-            <th>建物名</th>
-            <td>
-                <input type="text" name="building" value="{{ old('building') }}" placeholder="例: 千駄ヶ谷マンション123">
-            </td>
-        </tr>
+                <!-- 住所 -->
+                <tr>
+                    <th class="form-label">住所<span>※</span></th>
+                    <td class="form-field">
+                        <input class="form-input" type="text" name="address" value="{{ old('address') }}" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3">
+                        @error('address')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </td>
+                </tr>
 
-        <!-- お問い合わせの種類 -->
-        <tr>
-            <th>お問い合わせの種類<span>※</span></th>
-            <td>
-                <select name="category_id">
-                    <option value="" disabled {{ old('category_id') == '' ? 'selected' : '' }}>選択してください</option>
-                    @foreach($categories as $category)
-                    <option value="{{ category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->content }}</option>
-                    @endforeach
-                </select>
-                @error('category_id')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
+                <!-- 建物名 -->
+                <tr>
+                    <th class="form-label">建物名</th>
+                    <td class="form-field">
+                        <input class="form-input" type="text" name="building" value="{{ old('building') }}" placeholder="例: 千駄ヶ谷マンション123">
+                    </td>
+                </tr>
 
-        <!-- お問い合わせ内容 -->
-        <tr>
-            <th>お問い合せ内容<span>※</span></th>
-            <td>
-                <textarea name="detail" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
-                @error('detail')
-                <div>{{ $message }}</div>
-                @enderror
-            </td>
-        </tr>
-    </table>
+                <!-- お問い合わせの種類 -->
+                <tr>
+                    <th class="form-label">お問い合わせの種類<span>※</span></th>
+                    <td class="form-field">
+                        <select class="form-select" name="category_id">
+                            <option value="" disabled {{ old('category_id') == '' ? 'selected' : '' }}>選択してください</option>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->content }}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </td>
+                </tr>
 
-    <div>
-        <button type="submit">確認画面</button>
+                <!-- お問い合わせ内容 -->
+                <tr>
+                    <th class="form-label">お問い合せ内容<span>※</span></th>
+                    <td class="form-field">
+                        <textarea class="form-textarea" name="detail" placeholder="お問い合わせ内容をご記載ください">{{ old('detail') }}</textarea>
+                        @error('detail')
+                        <div class="error">{{ $message }}</div>
+                        @enderror
+                    </td>
+                </tr>
+
+            </table>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">確認画面</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 @endsection

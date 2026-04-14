@@ -1,31 +1,31 @@
 @extends('layouts.app')
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+@endpush
 @section('content')
-<h2>Login</h2>
-<form action="/login" method="post">
-    @csrf
-    <table>
-        <tr>
-            <th>メールアドレス</th>
-            <td>
-                <input type="email" name="email" value="{{ old('email') }}">
+<div class="auth-wrap">
+    <h2 class="page-title">Login</h2>
+    <div class="auth-card">
+        <form action="/login" method="post">
+            @csrf
+            <div class="auth-field">
+                <label class="auth-label">メールアドレス</label>
+                <input class="auth-input" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
                 @error('email')
-                <div>{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
-            </td>
-        </tr>
-
-        <tr>
-            <th>パスワード</th>
-            <td>
-                <input type="password" name="password">
+            </div>
+            <div class="auth-field">
+                <label class="auth-label">パスワード</label>
+                <input class="auth-input" type="password" name="password" placeholder="例: coachtech1106">
                 @error('password')
-                <div>{{ $message }}</div>
+                <div class="error">{{ $message }}</div>
                 @enderror
-            </td>
-        </tr>
-    </table>
-    <div>
-        <button type="submit">ログイン</button>
+            </div>
+            <div class="auth-actions">
+                <button class="btn btn-primary" type="submit">ログイン</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 @endsection

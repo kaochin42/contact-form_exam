@@ -1,0 +1,117 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Inika', 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    color: #9e8e7e;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Header ---- */
+.header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 10%;
+    border-bottom: 1px solid #ddd5c8;
+    background-color: #ffffff;
+}
+
+.header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inika', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #9e8e7e;
+    text-decoration: none;
+}
+
+.header-nav {
+    margin-left: auto;
+}
+
+.header-form {
+    margin: 0;
+}
+
+.header-btn {
+    background-color: #f4f4f4;
+    color: #ddd5c8;
+    padding: 3px 15px;
+    border: 1px solid #ddd5c8;
+    text-decoration: none;
+    font-family: 'Inika', serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ---- Container ---- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px 16px;
+}
+
+/* ---- Page Title ---- */
+.page-title {
+    font-size: 28px;
+    font-weight: 400;
+    color: #9e8e7e;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+/* ---- Error ---- */
+.error {
+    color: #c0392b;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+}
+
+/* ---- Buttons ---- */
+.btn {
+    display: inline-block;
+    padding: 8px 32px;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #8b7355;
+    color: #ffffff;
+    border-color: #8b7355;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #9e8e7e;
+    border-color: transparent;
+    text-decoration: underline;
+}
+
+.btn-danger {
+    background-color: #c0392b;
+    color: #ffffff;
+    border-color: #c0392b;
+    padding: 4px 12px;
+}
+
+/* ---- placeholder共通 ---- */
+.form-input::placeholder,
+.form-textarea::placeholder,
+.form-select::placeholder,
+.form-tel::placeholder,
+.auth-input::placeholder {
+    color: #baa899;
+}

@@ -15,7 +15,9 @@ use App\Http\Controllers\ContactController;
 */
 
 // --- 【一般公開ページ】 ---
-Route::get('/', [ContactController::class, 'index']); Route::post('/confirm', [ContactController::class, 'confirm']); Route::post('/thanks', [ContactController::class, 'store']);
+Route::get('/', [ContactController::class, 'index']);
+Route::post('/confirm', [ContactController::class, 'confirm']);
+Route::post('/thanks', [ContactController::class, 'store']);
 
 // --- 【管理画面（ログイン必須）】 ---
 Route::middleware('auth')->group(function ()

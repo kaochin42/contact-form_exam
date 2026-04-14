@@ -49,7 +49,7 @@ class ContactController extends Controller
         $contacts = Contact::with('category')->paginate(7);
         $categories = Category::all();
 
-        return view('admin', compact('contacts', 'categories'));
+        return view('admin.index', compact('contacts', 'categories'));
     }
 
     // PG05: 検索
@@ -61,7 +61,7 @@ class ContactController extends Controller
 
         $categories = Category::all();
 
-        return view('admin', compact('contacts', 'categories'));
+        return view('admin.index', compact('contacts', 'categories'));
     }
 
     // PG06: 検索リセット

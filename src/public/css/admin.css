@@ -1,0 +1,271 @@
+/* ---- 検索フォーム ---- */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-form .search-input,
+.search-form .search-select,
+.search-form .search-date {
+    height: 38px;
+    padding: 9px 14px;
+    border: 1px solid #ddd5c8;
+    font-size: 13px;
+    color: #9e8e7e;
+    background-color: #f4f4f4;
+    outline: none;
+    font-family: inherit;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-select,
+.search-date {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M5 7L0 0h10z' fill='%23aaa'/%3E%3C/svg%3E");
+    background-position: calc(100% - 15px) center;
+    background-size: 10px 7px;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+    padding-right: 32px;
+    font-family: inherit;
+}
+
+.search-date::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.search-btn {
+    height: 38px;
+    padding: 9px 28px;
+    background-color: #8b7355;
+    color: #ffffff;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.search-reset {
+    height: 38px;
+    padding: 9px 18px;
+    background-color: #d9c9b5;
+    color: #ffffff;
+    border: none;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    font-family: inherit;
+}
+
+/* ---- ツールバー ---- */
+.admin-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.export-btn {
+    display: inline-block;
+    padding: 7px 20px;
+    border: none;
+    font-size: 13px;
+    color: #9e8e7e;
+    background-color: #edeae6;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+/* ---- テーブル ---- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-family: inherit;
+    border: 1px solid #ddd5c8;
+}
+
+.data-table thead tr {
+    background-color: #8b7355;
+}
+
+.data-table thead th {
+    padding: 12px 20px 12px 50px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #ddd5c8;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f5f0ea;
+    cursor: pointer;
+}
+
+.data-table tbody td {
+    padding: 12px 20px 12px 50px;
+    font-size: 13px;
+}
+
+/* ---- 詳細ボタン ---- */
+.detail-btn {
+    display: inline-block;
+    padding: 5px 16px;
+    border: 1px solid #ddd5c8;
+    font-size: 12px;
+    color: #ddd5c8;
+    cursor: pointer;
+    background-color: #f4f4f4;
+    font-family: inherit;
+}
+
+/* ============================================
+   Modal - CSS Only (checkbox hack)
+   ============================================ */
+
+.modal-switch {
+    display: none;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* オーバーレイ自体はクリックを通過させる */
+}
+
+.modal-overlay .modal-window {
+    pointer-events: auto;
+    /* ウィンドウ内だけクリックを受け取る */
+}
+
+.modal-switch:checked~.modal-overlay {
+    display: flex;
+}
+
+/* モーダルが開いている間、テーブル行のホバーを無効化 */
+.modal-switch:checked~* .data-table tbody tr:hover,
+body:has(.modal-switch:checked) .data-table tbody tr:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.modal-window {
+    background-color: #ffffff;
+    padding: 48px 56px;
+    width: 90%;
+    max-width: 680px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.12);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #ddd5c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #9e8e7e;
+    cursor: pointer;
+    transition: background-color 0.15s;
+    line-height: 1;
+}
+
+/* ---- モーダル内テーブル ---- */
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.modal-table tr {
+    border-bottom: none;
+}
+
+.modal-table th,
+.modal-table td {
+    padding: 18px 0;
+    font-size: 13px;
+    vertical-align: top;
+}
+
+.modal-table tbody tr {
+    border-bottom: none;
+}
+
+.modal-table th {
+    width: 160px;
+    font-weight: 700;
+}
+
+.modal-table td {
+    font-weight: 400;
+}
+
+.modal-actions {
+    text-align: center;
+}
+
+/* ---- ページネーション ---- */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination .page-item .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ddd5c8;
+    font-size: 12px;
+    color: #9e8e7e;
+    background-color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #8b7355;
+    color: #ffffff;
+    border-color: #8b7355;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #9e8e7e;
+    pointer-events: none;
+}
