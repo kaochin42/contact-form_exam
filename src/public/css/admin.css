@@ -136,14 +136,12 @@
     font-family: inherit;
 }
 
-/* ============================================
-   Modal - CSS Only (checkbox hack)
-   ============================================ */
-
+/* ---- モーダル ---- */
 .modal-switch {
     display: none;
 }
 
+/* オーバーレイ自体はクリックを通過させる */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -152,12 +150,11 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    /* オーバーレイ自体はクリックを通過させる */
 }
 
+/* ウィンドウ内だけクリックを受け取る */
 .modal-overlay .modal-window {
     pointer-events: auto;
-    /* ウィンドウ内だけクリックを受け取る */
 }
 
 .modal-switch:checked~.modal-overlay {
@@ -179,7 +176,7 @@ body:has(.modal-switch:checked) .data-table tbody tr:hover {
     max-height: 85vh;
     overflow-y: auto;
     position: relative;
-    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-close {
