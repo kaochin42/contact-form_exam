@@ -27,20 +27,16 @@ class Contact extends Model
 
     public function scopeSearch($query, $request)
     {
-        // 名前検索（姓、名、フルネーム対応）
+        // 名前検索（姓、名、フルネーム対応）メールアドレス検索（完全一致、部分一致）
         if ($request->filled('keyword')) {
             $keyword = $request->keyword;
             $query->where(function ($q) use ($keyword) {
                 $q->where('first_name', 'like', "%$keyword%")
-                ->orWhere('last_name', 'like', "%$keyword%")
-                ->orWhereRaw('CONCAT(last_name, first_name) LIKE ?', ["%$keyword%"])
-                ->orWhereRaw('CONCAT(last_name, " ", first_name) LIKE ?', ["%$keyword%"]);
+                    ->orWhere('last_name', 'like', "%$keyword%")
+                    ->orWhere('email', 'like', "%$keyword%")  // 追加
+                    ->orWhereRaw('CONCAT(last_name, first_name) LIKE ?', ["%$keyword%"])
+                    ->orWhereRaw('CONCAT(last_name, " ", first_name) LIKE ?', ["%$keyword%"]);
             });
-        }
-
-        // メールアドレス検索
-        if ($request->filled('email')) {
-            $query->where('email', 'like', "%{$request->email}%");
         }
 
         // 性別検索（全て以外の場合）

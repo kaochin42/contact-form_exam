@@ -56,7 +56,7 @@
                 <tr>
                     <th class="form-label">メールアドレス<span>※</span></th>
                     <td class="form-field">
-                        <input class="form-input" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
+                        <input class="form-input" type="text" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
                         @error('email')
                         <div class="error">{{ $message }}</div>
                         @enderror

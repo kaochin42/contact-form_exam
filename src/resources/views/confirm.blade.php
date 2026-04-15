@@ -30,7 +30,7 @@
 
                 <tr>
                     <th class="confirm-label">電話番号</th>
-                    <td class="confirm-value">{{ $contact['tel1'] }}-{{ $contact['tel2'] }}-{{ $contact['tel3'] }}</td>
+                    <td class="confirm-value">{{ $contact['tel1'] }}{{ $contact['tel2'] }}{{ $contact['tel3'] }}</td>
                 </tr>
                 <input type="hidden" name="tel1" value="{{ $contact['tel1'] }}">
                 <input type="hidden" name="tel2" value="{{ $contact['tel2'] }}">
