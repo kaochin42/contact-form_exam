@@ -162,7 +162,7 @@
     border-bottom: 1px solid #ddd5c8;
 }
 
-.confirm-th {
+.confirm-label {
     width: 200px;
     padding: 16px 20px;
     background-color: #baa899;
@@ -173,7 +173,7 @@
     text-align: left;
 }
 
-.confirm-td {
+.confirm-value {
     padding: 16px 20px;
     font-size: 13px;
     color: #3a3028;

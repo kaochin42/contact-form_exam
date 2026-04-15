@@ -87,16 +87,21 @@ class ContactController extends Controller
         $response = new StreamedResponse(function () use ($contacts) {
             $handle = fopen('php://output', 'w');
 
+            // 文字化け防止
+            fprintf($handle, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
             // CSVヘッダー
-            fputcsv($handle, ['id', 'category_id', 'first_name', 'last_name', 'gender', 'email', 'tel', 'address', 'building', 'detail']);
+            fputcsv($handle, ['お問い合わせの種類', '姓', '名', '性別', 'メールアドレス', '電話番号', '住所', '建物名', 'お問い合わせ内容']);
 
             foreach ($contacts as $contact) {
+                $genderMap = [1 => '男性', 2 => '女性', 3 => 'その他'];
+                $gender = $genderMap[$contact->gender] ?? '';
+
                 fputcsv($handle, [
-                    $contact->id,
-                    $contact->category_id,
-                    $contact->first_name,
+                    $contact->category->content,
                     $contact->last_name,
-                    $contact->gender,
+                    $contact->first_name,
+                    $gender,
                     $contact->email,
                     $contact->tel,
                     $contact->address,
@@ -109,7 +114,7 @@ class ContactController extends Controller
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="contacts_' . date('Ymd') . '.csv"',
         ]);
-        
+
         return $response;
     }
 }

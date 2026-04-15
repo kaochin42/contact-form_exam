@@ -29,12 +29,12 @@ class Contact extends Model
     {
         // 名前検索（姓、名、フルネーム対応）
         if ($request->filled('keyword')) {
-            $kw = $request->keyword;
-            $query->where(function($q) use ($kw) {
-                $q->where('first_name', 'like', "%$kw%")
-                  ->orWhere('last_name', 'like', "%$kw%")
-                  ->orWhereRaw('CONCAT(last_name, first_name) LIKE ?', ["%$kw%"])
-                  ->orWhereRaw('CONCAT(last_name, " ", first_name) LIKE ?', ["%$kw%"]);
+            $keyword = $request->keyword;
+            $query->where(function ($q) use ($keyword) {
+                $q->where('first_name', 'like', "%$keyword%")
+                ->orWhere('last_name', 'like', "%$keyword%")
+                ->orWhereRaw('CONCAT(last_name, first_name) LIKE ?', ["%$keyword%"])
+                ->orWhereRaw('CONCAT(last_name, " ", first_name) LIKE ?', ["%$keyword%"]);
             });
         }
 

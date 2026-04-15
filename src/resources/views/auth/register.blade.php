@@ -17,7 +17,7 @@
             </div>
             <div class="auth-field">
                 <label class="auth-label">メールアドレス</label>
-                <input class="auth-input" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
+                <input class="auth-input" type="text" name="email" value="{{ old('email') }}" placeholder="例: test@example.com">
                 @error('email')
                 <div class="error">{{ $message }}</div>
                 @enderror
